@@ -10,16 +10,34 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="hamzaha.washington.edu.quizdroid.SubjectActivity">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello World!"
-        android:id="@+id/subject_title"/>
+        android:orientation="vertical">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Begin"
-        android:id="@+id/begin"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="NAME"
+            android:id="@+id/subject_name"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DESCRIPTION"
+            android:id="@+id/subject_description"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="NUMBER OF QUESTIONS"
+            android:id="@+id/subject_num_questions"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Begin"
+            android:id="@+id/begin"/>
+
+    </LinearLayout>
+
 
 </RelativeLayout>

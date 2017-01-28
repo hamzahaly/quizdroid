@@ -42,9 +42,9 @@ public class SubjectAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         Subject subject = getItem(position);
 
-        View rowView = inflater.inflate(android.R.layout.simple_list_item_1, parent, false);
-        //TextView subjectTitle = (TextView) rowView.findViewById(R.id.list_view);
-        //subjectTitle.setText(subject);
+        View rowView = inflater.inflate(R.layout.list_item_subject, parent, false);
+        TextView subjectTitle = (TextView) rowView.findViewById(R.id.subject_title);
+        subjectTitle.setText(subject.getSubjectName());
         return rowView;
     };
 }
