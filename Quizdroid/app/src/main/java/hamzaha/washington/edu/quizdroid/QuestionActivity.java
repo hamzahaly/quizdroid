@@ -30,8 +30,13 @@ public class QuestionActivity extends Activity {
             public void onClick(View view) {
                 //Make a new intent
 
-                Intent intent = new Intent(view.getContext(), QuestionActivity.class);
+                //If there are more questions left
+                Intent intent = new Intent(view.getContext(), AnswerActivity.class);
                 startActivity(intent);
+
+                //Else there are no more questions left
+//                Intent intent = new Intent(view.getContext(), FinishActivity.class);
+//                startActivity(intent);
             }
         });
     }
