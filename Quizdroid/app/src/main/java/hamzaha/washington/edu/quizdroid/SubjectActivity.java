@@ -17,7 +17,7 @@ public class SubjectActivity extends Activity {
 
         String subject = getIntent().getStringExtra("Subject");
         String description = getIntent().getStringExtra("Description");
-        int numQuestions = getIntent().getIntExtra("NumberOfQuestions", 3);
+        final int numQuestions = getIntent().getIntExtra("NumberOfQuestions", 3);
 
         QuizState quizState = new QuizState(numQuestions, subject, description);
 
@@ -28,8 +28,9 @@ public class SubjectActivity extends Activity {
                 //Make a new intent
                 Intent intent = new Intent(view.getContext(), QuestionActivity.class);
                 //Implement Parcebale to pass objects into Intents
-                intent.putExtra()
+                intent.putExtra("NumberOfQuestions", numQuestions);
                 startActivity(intent);
+                finish();
             }
         });
 
