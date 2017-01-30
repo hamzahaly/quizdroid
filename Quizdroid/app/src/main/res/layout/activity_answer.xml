@@ -18,19 +18,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hi"
+            android:text="Answer you chose"
             android:id="@+id/answer_given"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello"
+            android:text="The correct answer goes here"
             android:id="@+id/correct_answer"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hey"
+            android:text="You have 5 out of 9 correct"
             android:id="@+id/quiz_status"/>
 
         <Button

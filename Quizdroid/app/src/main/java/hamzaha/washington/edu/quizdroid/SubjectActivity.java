@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class SubjectActivity extends Activity {
 
@@ -14,14 +15,33 @@ public class SubjectActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject);
 
+        String subject = getIntent().getStringExtra("Subject");
+        String description = getIntent().getStringExtra("Description");
+        int numQuestions = getIntent().getIntExtra("NumberOfQuestions", 3);
+
+        QuizState quizState = new QuizState(numQuestions, subject, description);
+
         Button beginButton = (Button) findViewById(R.id.begin);
         beginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Make a new intent
                 Intent intent = new Intent(view.getContext(), QuestionActivity.class);
+                //Implement Parcebale to pass objects into Intents
+                intent.putExtra()
                 startActivity(intent);
             }
         });
+
+        TextView subjectNameTV = (TextView) findViewById(R.id.subject_name);
+        TextView descriptionNameTV = (TextView) findViewById(R.id.subject_description);
+        TextView numberQuestionsTV = (TextView) findViewById(R.id.subject_num_questions);
+
+        subjectNameTV.setText(subject);
+        descriptionNameTV.setText(description);
+
+        String numberOfQuestions = "Number of Questions: " + numQuestions;
+        numberQuestionsTV.setText(numberOfQuestions);
+
     }
 }
