@@ -27,6 +27,7 @@ public class SubjectActivity extends Activity {
             public void onClick(View view) {
                 //Make a new intent
                 Intent intent = new Intent(view.getContext(), QuestionActivity.class);
+
                 //Implement Parcebale to pass objects into Intents
                 intent.putExtra("NumberOfQuestions", numQuestions);
                 startActivity(intent);

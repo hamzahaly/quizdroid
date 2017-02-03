@@ -1,42 +1,52 @@
 package hamzaha.washington.edu.quizdroid;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class QuestionActivity extends Activity {
+public class QuestionFragment extends Fragment {
 
     public static final String TAG = "TAG";
 
     public int numberOfQuestionsLeft;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_question);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        final int numQuestions = getIntent().getIntExtra("NumberOfQuestions", 3);
-        numberOfQuestionsLeft = numQuestions;
-        Button submitButton = (Button) findViewById(R.id.submit);
 
-        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radio_group);
-
-        submitButton.setEnabled(false);
-        submitButton.setClickable(false);
-
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), AnswerActivity.class);
-                intent.putExtra("NumberOfQuestionsLeft", numberOfQuestionsLeft);
-                startActivity(intent);
-            }
-        });
+        return inflater.inflate(R.layout.fragment_question, container, false);
     }
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_question);
+//
+//        final int numQuestions = getIntent().getIntExtra("NumberOfQuestions", 3);
+//        numberOfQuestionsLeft = numQuestions;
+//        Button submitButton = (Button) findViewById(R.id.submit);
+//
+//        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radio_group);
+//
+//        submitButton.setEnabled(false);
+//        submitButton.setClickable(false);
+//
+//        submitButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(view.getContext(), AnswerActivity.class);
+//                intent.putExtra("NumberOfQuestionsLeft", numberOfQuestionsLeft);
+//                startActivity(intent);
+//            }
+//        });
+//    }
 
     public void onRadioButtonClicked(View view) {
         boolean checked = ((RadioButton) view).isChecked();

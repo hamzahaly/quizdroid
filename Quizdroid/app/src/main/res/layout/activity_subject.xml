@@ -15,29 +15,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
+        <FrameLayout
+            android:id="@+id/fragment_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="NAME"
-            android:textSize="45dp"
-            android:id="@+id/subject_name"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="DESCRIPTION"
-            android:textSize="25dp"
-            android:id="@+id/subject_description"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="NUMBER OF QUESTIONS"
-            android:id="@+id/subject_num_questions"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Begin"
-            android:id="@+id/begin"/>
+            android:layout_height="match_parent">
+
+        </FrameLayout>
 
     </LinearLayout>
 
