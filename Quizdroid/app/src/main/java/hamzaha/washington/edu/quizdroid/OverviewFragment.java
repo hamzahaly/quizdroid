@@ -35,7 +35,7 @@ public class OverviewFragment extends Fragment {
                 FragmentManager fragmentManager = getFragmentManager();
                 Fragment questionFragment = new QuestionFragment();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.setCustomAnimations();
+                
                 fragmentTransaction.replace(R.id.fragment_container, questionFragment);
                 fragmentTransaction.commit();
             }
