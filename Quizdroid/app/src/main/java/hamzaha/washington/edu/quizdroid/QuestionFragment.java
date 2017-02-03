@@ -30,6 +30,9 @@ public class QuestionFragment extends Fragment {
         submitButton.setEnabled(false);
         submitButton.setClickable(false);
 
+        final SubjectActivity subjectActivity = (SubjectActivity) getActivity();
+        numberOfQuestionsLeft = subjectActivity.getNumQuestions();
+
         RadioGroup radioGroup = (RadioGroup) view.findViewById(R.id.radio_group);
         radioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -61,7 +64,7 @@ public class QuestionFragment extends Fragment {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container, answerFragment);
                 fragmentTransaction.commit();
-
+                subjectActivity.decrementNumQuestions();
             }
         });
 

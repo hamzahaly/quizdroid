@@ -13,14 +13,18 @@ import android.app.Fragment;
 
 public class SubjectActivity extends Activity {
 
+    private String subject;
+    private String description;
+    private int numQuestions;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject);
 
-        String subject = getIntent().getStringExtra("Subject");
-        String description = getIntent().getStringExtra("Description");
-        final int numQuestions = getIntent().getIntExtra("NumberOfQuestions", 3);
+        subject = getIntent().getStringExtra("Subject");
+        description = getIntent().getStringExtra("Description");
+        numQuestions = getIntent().getIntExtra("NumberOfQuestions", 3);
 
         QuizState quizState = new QuizState(numQuestions, subject, description);
 
@@ -55,5 +59,22 @@ public class SubjectActivity extends Activity {
 //        String numberOfQuestions = "Number of Questions: " + numQuestions;
 //        numberQuestionsTV.setText(numberOfQuestions);
 
+    }
+
+    public String getSubject() {
+
+        return subject;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getNumQuestions() {
+        return numQuestions;
+    }
+
+    public void decrementNumQuestions() {
+        numQuestions--;
     }
 }

@@ -16,9 +16,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".SubjectActivity" />
-        <activity android:name=".QuestionActivity" />
-        <activity android:name=".AnswerActivity" />
-        <activity android:name=".FinishActivity"></activity>
     </application>
 
 </manifest>
