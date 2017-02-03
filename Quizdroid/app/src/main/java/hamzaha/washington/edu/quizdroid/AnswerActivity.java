@@ -24,16 +24,16 @@ public class AnswerActivity extends Activity {
             public void onClick(View view) {
                 //Do something on this button click
                 //If there are more questions left
-                if (numberOfQuestionsLeft > 0) {
-                    Intent intent = new Intent(view.getContext(), QuestionActivity.class);
-                    intent.putExtra("NumberOfQuestions", numberOfQuestionsLeft);
-                    startActivity(intent);
-                } else {
-                    //Else there are no more questions left
-                    Intent intent = new Intent(view.getContext(), FinishActivity.class);
-                    startActivity(intent);
-                }
-                finish();
+//                if (numberOfQuestionsLeft > 0) {
+//                    Intent intent = new Intent(view.getContext(), QuestionActivity.class);
+//                    intent.putExtra("NumberOfQuestions", numberOfQuestionsLeft);
+//                    startActivity(intent);
+//                } else {
+//                    //Else there are no more questions left
+//                    Intent intent = new Intent(view.getContext(), FinishActivity.class);
+//                    startActivity(intent);
+//                }
+//                finish();
             }
         });
     }
