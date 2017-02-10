@@ -16,32 +16,32 @@ import java.util.ArrayList;
 public class MainActivity extends Activity {
 
     private static final String TAG = "TAG";
-    public ArrayList<Subject> subjects = new ArrayList<>();
+    public ArrayList<Topic> topics = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        subjects.add(new Subject("Math", "Default Description", 3));
-        subjects.add(new Subject("Physics", "Default Description", 3));
-        subjects.add(new Subject("Marvel Super Heroes", "Default Description", 3));
+        topics.add(new Topic("Math", "Default Description", 3));
+        topics.add(new Topic("Physics", "Default Description", 3));
+        topics.add(new Topic("Marvel Super Heroes", "Default Description", 3));
 
-        final SubjectAdapter subjectAdapter = new SubjectAdapter(this, subjects);
+        final TopicAdapter topicAdapter = new TopicAdapter(this, topics);
         final ListView listView = (ListView) findViewById(R.id.list_view);
-        listView.setAdapter(subjectAdapter);
+        listView.setAdapter(topicAdapter);
 
         AdapterView.OnItemClickListener clickListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(view.getContext(), SubjectActivity.class);
-                Subject s = subjectAdapter.getItem(i);
+                Topic t = topicAdapter.getItem(i);
 
-                Log.v(TAG, s.getSubjectName());
+                Log.v(TAG, t.getTopicName());
 
-                intent.putExtra("Subject", s.getSubjectName());
-                intent.putExtra("Description", s.getDescription());
-                intent.putExtra("NumberOfQuestions", s.getNumberOfQuestions());
+                intent.putExtra("Subject", t.getTopicName());
+                intent.putExtra("Description", t.getDescription());
+                intent.putExtra("NumberOfQuestions", t.getNumberOfQuestions());
 
                 startActivity(intent);
             }

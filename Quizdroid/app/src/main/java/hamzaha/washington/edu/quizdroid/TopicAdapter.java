@@ -15,13 +15,13 @@ import java.util.ArrayList;
  * Created by iguest on 1/27/17.
  */
 
-public class SubjectAdapter extends BaseAdapter {
-    private ArrayList<Subject> dataSource;
+public class TopicAdapter extends BaseAdapter {
+    private ArrayList<Topic> dataSource;
     private Context context;
     private LayoutInflater inflater;
-    public SubjectAdapter(Context context, ArrayList<Subject> subjects) {
+    public TopicAdapter(Context context, ArrayList<Topic> topics) {
         this.context = context;
-        dataSource = subjects;
+        dataSource = topics;
         inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
 
     }
@@ -31,7 +31,7 @@ public class SubjectAdapter extends BaseAdapter {
     };
 
     @Override
-    public Subject getItem(int position) {
+    public Topic getItem(int position) {
         return dataSource.get(position);
     };
 
@@ -40,11 +40,11 @@ public class SubjectAdapter extends BaseAdapter {
     };
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        Subject subject = getItem(position);
+        Topic topic = getItem(position);
 
         View rowView = inflater.inflate(R.layout.list_item_subject, parent, false);
-        TextView subjectTitle = (TextView) rowView.findViewById(R.id.subject_title);
-        subjectTitle.setText(subject.getSubjectName());
+        TextView topicTitle = (TextView) rowView.findViewById(R.id.subject_title);
+        topicTitle.setText(topic.getTopicName());
         return rowView;
     };
 }
