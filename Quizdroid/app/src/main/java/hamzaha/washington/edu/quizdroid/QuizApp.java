@@ -3,23 +3,23 @@ package hamzaha.washington.edu.quizdroid;
 import android.app.Application;
 import android.util.Log;
 
+import java.util.List;
+
 /**
  * Created by iguest on 2/10/17.
  */
 
-public class QuizApp extends Application implements TopicRepository {
+public class QuizApp extends Application {
 
-    private static TopicRepository repository;
+    private TopicRepository instance = new Repository();
+    private List<Topic> topics;
 
-    public static TopicRepository getInstance() {
-        if (repository == null) {
-
-        }
-        return repository;
+    public TopicRepository getRepository() {
+        return instance;
     }
 
-    @Override
-    public void onCreate() {
+    public QuizApp() {
         Log.v("V", "OnCreate fired");
     }
+
 }

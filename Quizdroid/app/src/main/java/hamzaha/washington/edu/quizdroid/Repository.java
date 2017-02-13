@@ -1,5 +1,6 @@
 package hamzaha.washington.edu.quizdroid;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,15 +8,15 @@ import java.util.List;
  */
 
 public class Repository implements TopicRepository {
-    private Repository instance;
     private int answer;
     private Topic topic;
-    private List<Topic> topics;
     private Question question;
 
+    private List<Question> questions = new ArrayList<Question>();
+    private List<Topic> topics = new ArrayList<Topic>();
 
     @Override
-    public List<Topic> getTopics() {
+    public List<Topic> getAllTopics() {
         return topics;
     }
 
@@ -23,13 +24,10 @@ public class Repository implements TopicRepository {
     public Topic getTopic() {
         return topic;
     }
+
     @Override
     public Question getQuestion() {
         return question;
-    }
-    @Override
-    public Repository getInstance() {
-        return instance;
     }
 
     @Override
@@ -37,4 +35,8 @@ public class Repository implements TopicRepository {
         return 0;
     }
 
+    @Override
+    public List<Question> getAllQuestions() {
+        return questions;
+    }
 }

@@ -7,9 +7,10 @@ import java.util.List;
  */
 
 public interface TopicRepository {
-    List<Topic> getTopics();
+    List<Topic> getAllTopics();
+    List<Question> getAllQuestions();
     Topic getTopic();
     int getAnswer();
     Question getQuestion();
-    TopicRepository getInstance();
+
 }

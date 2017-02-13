@@ -12,11 +12,13 @@ import android.util.Log;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends Activity {
 
     private static final String TAG = "TAG";
-    public ArrayList<Topic> topics = new ArrayList<>();
+    public QuizApp quizAppState = new QuizApp();
+    public ArrayList<Topic> topics = (ArrayList<Topic>) quizAppState.getRepository().getAllTopics();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
