@@ -9,6 +9,11 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/subject_icon"
+        />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

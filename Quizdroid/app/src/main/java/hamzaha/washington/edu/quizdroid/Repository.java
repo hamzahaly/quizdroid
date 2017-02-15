@@ -41,7 +41,8 @@ public class Repository implements TopicRepository {
     }
 
     @Override
-    public void setTopic(String topic, String desc, int numQuestions) {
-        topics.add(new Topic(topic, desc, numQuestions));
+    public void setTopic(String topic, String desc, int numQuestions, int imgLocation) {
+        this.topic = new Topic(topic, desc, numQuestions, imgLocation);
+        topics.add(this.topic);
     }
 }

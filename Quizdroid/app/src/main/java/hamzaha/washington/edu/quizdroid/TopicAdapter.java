@@ -1,10 +1,12 @@
 package hamzaha.washington.edu.quizdroid;
 
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -44,7 +46,9 @@ public class TopicAdapter extends BaseAdapter {
 
         View rowView = inflater.inflate(R.layout.list_item_subject, parent, false);
         TextView topicTitle = (TextView) rowView.findViewById(R.id.subject_title);
+        ImageView imageView = (ImageView) rowView.findViewById(R.id.imgIcon);
         topicTitle.setText(topic.getTopicName());
+        imageView.setImageResource(topic.getImgLocation());
         return rowView;
     };
 }

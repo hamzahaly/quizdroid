@@ -3,6 +3,7 @@ package hamzaha.washington.edu.quizdroid;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -10,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.util.Log;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,19 +19,19 @@ import java.util.List;
 public class MainActivity extends Activity {
 
     private static final String TAG = "TAG";
-    public QuizApp quizAppState = new QuizApp();
-    //public ArrayList<Topic> topics = (ArrayList<Topic>) quizAppState.getRepository().getAllTopics();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        quizAppState.getRepository().setTopic("Math", "Default Desc", 3);
-        quizAppState.getRepository().setTopic("Physics", "Default Desc", 3);
-        quizAppState.getRepository().setTopic("Marvel Superheroes", "Default Desc", 3);
+        final QuizApp quizApp = (QuizApp) getApplication();
 
-        final TopicAdapter topicAdapter = new TopicAdapter(this, (ArrayList<Topic>) quizAppState.getRepository().getAllTopics());
+        quizApp.getRepository().setTopic("Math", "Default Desc", 3, R.mipmap.ic_launcher);
+        quizApp.getRepository().setTopic("Physics", "Default Desc", 3, R.mipmap.ic_launcher);
+        quizApp.getRepository().setTopic("Marvel Superheroes", "Default Desc", 3, R.mipmap.ic_launcher);
+
+        final TopicAdapter topicAdapter = new TopicAdapter(this, (ArrayList<Topic>) quizApp.getRepository().getAllTopics());
         final ListView listView = (ListView) findViewById(R.id.list_view);
         listView.setAdapter(topicAdapter);
 
@@ -40,10 +42,6 @@ public class MainActivity extends Activity {
                 Topic t = topicAdapter.getItem(i);
 
                 Log.v(TAG, t.getTopicName());
-
-                intent.putExtra("Subject", t.getTopicName());
-                intent.putExtra("Description", t.getDescription());
-                intent.putExtra("NumberOfQuestions", t.getNumberOfQuestions());
 
                 startActivity(intent);
             }

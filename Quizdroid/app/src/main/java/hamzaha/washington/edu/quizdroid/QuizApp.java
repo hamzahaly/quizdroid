@@ -1,6 +1,7 @@
 package hamzaha.washington.edu.quizdroid;
 
 import android.app.Application;
+import android.os.Parcelable;
 import android.util.Log;
 
 import java.util.List;
@@ -22,4 +23,7 @@ public class QuizApp extends Application {
         Log.v("V", "OnCreate fired");
     }
 
+    public int describeContents() {
+        return 0;
+    }
 }
