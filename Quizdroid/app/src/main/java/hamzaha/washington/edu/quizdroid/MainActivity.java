@@ -36,6 +36,7 @@ public class MainActivity extends Activity {
                 .getAbsolutePath(), "questions");
         Log.v(TAG, file.toString());
 
+
         quizApp.getRepository().setTopic("Math", "Default Description", 3, R.mipmap.ic_launcher);
         quizApp.getRepository().setTopic("Physics", "Default Description", 3, R.mipmap.ic_launcher);
         quizApp.getRepository().setTopic("Marvel Superheroes", "Default Description", 3, R.mipmap.ic_launcher);
@@ -51,6 +52,7 @@ public class MainActivity extends Activity {
                 Topic t = topicAdapter.getItem(i);
 
                 Log.v(TAG, t.getTopicName());
+                
 
                 startActivity(intent);
             }

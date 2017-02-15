@@ -29,6 +29,7 @@ public class SubjectActivity extends Activity {
         description = quizApp.getRepository().getTopic().getDescription();
         numQuestions = quizApp.getRepository().getTopic().getNumberOfQuestions();
         imgLocation = quizApp.getRepository().getTopic().getImgLocation();
+
         FragmentManager fragmentManager = getFragmentManager();
         Fragment overviewFragment = new OverviewFragment();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
