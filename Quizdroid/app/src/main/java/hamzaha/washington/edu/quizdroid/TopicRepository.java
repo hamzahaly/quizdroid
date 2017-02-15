@@ -12,6 +12,8 @@ public interface TopicRepository {
     Topic getTopic();
     int getAnswer();
     Question getQuestion();
-    void setTopics(String topic, String desc, int numQuestions);
-
+    void setTopic(String topic, String desc, int numQuestions, int imgLocation);
+    void setAnswer();
+    void setQuestion();
+    int getImgLocation();
 }

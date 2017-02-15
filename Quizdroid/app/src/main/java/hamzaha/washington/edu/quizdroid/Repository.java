@@ -11,6 +11,7 @@ public class Repository implements TopicRepository {
     private int answer;
     private Topic topic;
     private Question question;
+    private int imgLocation;
 
     private List<Question> questions = new ArrayList<Question>();
     private List<Topic> topics = new ArrayList<Topic>();
@@ -36,12 +37,28 @@ public class Repository implements TopicRepository {
     }
 
     @Override
+    public int getImgLocation() {
+        return imgLocation;
+    }
+
+    @Override
     public List<Question> getAllQuestions() {
         return questions;
     }
 
     @Override
-    public void setTopics(String topic, String desc, int numQuestions) {
-        topics.add(new Topic(topic, desc, numQuestions));
+    public void setTopic(String topic, String desc, int numQuestions, int imgLocation) {
+        this.topic = new Topic(topic, desc, numQuestions, imgLocation);
+        topics.add(this.topic);
+    }
+
+    @Override
+    public void setAnswer() {
+
+    }
+
+    @Override
+    public void setQuestion() {
+
     }
 }

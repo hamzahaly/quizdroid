@@ -13,21 +13,22 @@ import android.app.Fragment;
 
 public class SubjectActivity extends Activity {
 
-    private String subject;
+    private String topic;
     private String description;
     private int numQuestions;
+    private int imgLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject);
 
-        subject = getIntent().getStringExtra("Subject");
-        description = getIntent().getStringExtra("Description");
-        numQuestions = getIntent().getIntExtra("NumberOfQuestions", 3);
+        QuizApp quizApp = (QuizApp) getApplication();
 
-        QuizState quizState = new QuizState(numQuestions, subject, description);
-
+        topic = quizApp.getRepository().getTopic().getTopicName();
+        description = quizApp.getRepository().getTopic().getDescription();
+        numQuestions = quizApp.getRepository().getTopic().getNumberOfQuestions();
+        imgLocation = quizApp.getRepository().getTopic().getImgLocation();
         FragmentManager fragmentManager = getFragmentManager();
         Fragment overviewFragment = new OverviewFragment();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -63,7 +64,7 @@ public class SubjectActivity extends Activity {
 
     public String getSubject() {
 
-        return subject;
+        return topic;
     }
 
     public String getDescription() {
@@ -74,6 +75,9 @@ public class SubjectActivity extends Activity {
         return numQuestions;
     }
 
+    public int getImgLocation() {
+        return imgLocation;
+    }
     public void decrementNumQuestions() {
         numQuestions--;
     }

@@ -32,7 +32,7 @@ public class Topic {
         return numQuestions;
     }
 
-    public int getImageIcon() {
+    public int getImgLocation() {
         return imgLocation;
     }
 

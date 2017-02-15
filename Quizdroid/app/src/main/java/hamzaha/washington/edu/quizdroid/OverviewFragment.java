@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -24,6 +25,7 @@ public class OverviewFragment extends Fragment {
         String subject = subjectActivity.getSubject();
         String description = subjectActivity.getDescription();
         int numQuestions = subjectActivity.getNumQuestions();
+        int imgLocation = subjectActivity.getImgLocation();
 
         View view = inflater.inflate(R.layout.fragment_overview, container, false);
 
@@ -44,9 +46,12 @@ public class OverviewFragment extends Fragment {
         TextView subjectNameTV = (TextView) view.findViewById(R.id.subject_name);
         TextView descriptionNameTV = (TextView) view.findViewById(R.id.subject_description);
         TextView numberQuestionsTV = (TextView) view.findViewById(R.id.subject_num_questions);
+        ImageView imageView = (ImageView) view.findViewById(R.id.subject_image);
+
 
         subjectNameTV.setText(subject);
         descriptionNameTV.setText(description);
+        imageView.setImageResource(imgLocation);
 
         String numberOfQuestions = "Number of Questions: " + numQuestions;
         numberQuestionsTV.setText(numberOfQuestions);

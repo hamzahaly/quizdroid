@@ -47,7 +47,7 @@ public class TopicAdapter extends BaseAdapter {
         View rowView = inflater.inflate(R.layout.list_item_subject, parent, false);
         TextView topicTitle = (TextView) rowView.findViewById(R.id.subject_title);
         ImageView image = (ImageView) rowView.findViewById(R.id.imgIcon);
-        image.setImageResource(topic.getImageIcon());
+        image.setImageResource(topic.getImgLocation());
         topicTitle.setText(topic.getTopicName());
         return rowView;
     };

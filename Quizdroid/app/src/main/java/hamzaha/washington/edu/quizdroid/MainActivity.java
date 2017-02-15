@@ -24,24 +24,23 @@ import java.util.List;
 public class MainActivity extends Activity {
 
     private static final String TAG = "TAG";
-    public QuizApp quizAppState = new QuizApp();
-    //public ArrayList<Topic> topics = (ArrayList<Topic>) quizAppState.getRepository().getAllTopics();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        QuizApp quizApp = (QuizApp) getApplication();
+
         final File file = new File(Environment.getExternalStorageDirectory()
                 .getAbsolutePath(), "questions");
         Log.v(TAG, file.toString());
 
-        
-        quizAppState.getRepository().setTopics("Math", "Default Description", 3);
-        quizAppState.getRepository().setTopics("Physics", "Default Description", 3);
-        quizAppState.getRepository().setTopics("Marvel Superheroes", "Default Description", 3);
+        quizApp.getRepository().setTopic("Math", "Default Description", 3, R.mipmap.ic_launcher);
+        quizApp.getRepository().setTopic("Physics", "Default Description", 3, R.mipmap.ic_launcher);
+        quizApp.getRepository().setTopic("Marvel Superheroes", "Default Description", 3, R.mipmap.ic_launcher);
 
-        final TopicAdapter topicAdapter = new TopicAdapter(this, (ArrayList<Topic>) quizAppState.getRepository().getAllTopics());
+        final TopicAdapter topicAdapter = new TopicAdapter(this, (ArrayList<Topic>) quizApp.getRepository().getAllTopics());
         final ListView listView = (ListView) findViewById(R.id.list_view);
         listView.setAdapter(topicAdapter);
 
@@ -52,10 +51,6 @@ public class MainActivity extends Activity {
                 Topic t = topicAdapter.getItem(i);
 
                 Log.v(TAG, t.getTopicName());
-
-                intent.putExtra("Subject", t.getTopicName());
-                intent.putExtra("Description", t.getDescription());
-                intent.putExtra("NumberOfQuestions", t.getNumberOfQuestions());
 
                 startActivity(intent);
             }
