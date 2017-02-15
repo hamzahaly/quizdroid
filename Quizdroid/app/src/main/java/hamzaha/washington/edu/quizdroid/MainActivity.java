@@ -3,6 +3,8 @@ package hamzaha.washington.edu.quizdroid;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.JsonReader;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -10,6 +12,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.util.Log;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +32,11 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final File file = new File(Environment.getExternalStorageDirectory()
+                .getAbsolutePath(), "questions");
+        Log.v(TAG, file.toString());
+
+        
         quizAppState.getRepository().setTopics("Math", "Default Description", 3);
         quizAppState.getRepository().setTopics("Physics", "Default Description", 3);
         quizAppState.getRepository().setTopics("Marvel Superheroes", "Default Description", 3);
