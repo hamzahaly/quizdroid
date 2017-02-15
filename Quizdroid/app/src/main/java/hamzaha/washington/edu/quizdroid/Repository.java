@@ -39,4 +39,9 @@ public class Repository implements TopicRepository {
     public List<Question> getAllQuestions() {
         return questions;
     }
+
+    @Override
+    public void setTopic(String topic, String desc, int numQuestions) {
+        topics.add(new Topic(topic, desc, numQuestions));
+    }
 }
