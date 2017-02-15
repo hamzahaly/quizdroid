@@ -18,18 +18,18 @@ public class MainActivity extends Activity {
 
     private static final String TAG = "TAG";
     public QuizApp quizAppState = new QuizApp();
-    public ArrayList<Topic> topics = (ArrayList<Topic>) quizAppState.getRepository().getAllTopics();
+    //public ArrayList<Topic> topics = (ArrayList<Topic>) quizAppState.getRepository().getAllTopics();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        topics.add(new Topic("Math", "Default Description", 3));
-        topics.add(new Topic("Physics", "Default Description", 3));
-        topics.add(new Topic("Marvel Super Heroes", "Default Description", 3));
+        quizAppState.getRepository().setTopics("Math", "Default Description", 3);
+        quizAppState.getRepository().setTopics("Physics", "Default Description", 3);
+        quizAppState.getRepository().setTopics("Marvel Superheroes", "Default Description", 3);
 
-        final TopicAdapter topicAdapter = new TopicAdapter(this, topics);
+        final TopicAdapter topicAdapter = new TopicAdapter(this, (ArrayList<Topic>) quizAppState.getRepository().getAllTopics());
         final ListView listView = (ListView) findViewById(R.id.list_view);
         listView.setAdapter(topicAdapter);
 

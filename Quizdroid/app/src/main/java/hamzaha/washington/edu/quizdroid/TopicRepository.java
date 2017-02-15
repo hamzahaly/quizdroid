@@ -12,5 +12,6 @@ public interface TopicRepository {
     Topic getTopic();
     int getAnswer();
     Question getQuestion();
+    void setTopics(String topic, String desc, int numQuestions);
 
 }
