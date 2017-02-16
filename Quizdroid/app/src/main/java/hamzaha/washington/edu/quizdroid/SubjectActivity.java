@@ -24,11 +24,13 @@ public class SubjectActivity extends Activity {
         setContentView(R.layout.activity_subject);
 
         QuizApp quizApp = (QuizApp) getApplication();
+        Intent intent = getIntent();
+        int pos = intent.getIntExtra("position", 0);
 
-        topic = quizApp.getRepository().getTopic().getTopicName();
-        description = quizApp.getRepository().getTopic().getDescription();
-        numQuestions = quizApp.getRepository().getTopic().getNumberOfQuestions();
-        imageLocation = quizApp.getRepository().getTopic().getImgLocation();
+        topic = quizApp.getRepository().getTopic(pos).getTopicName();
+        description = quizApp.getRepository().getTopic(pos).getDescription();
+        numQuestions = quizApp.getRepository().getTopic(pos).getNumberOfQuestions();
+        imageLocation = quizApp.getRepository().getTopic(pos).getImgLocation();
 
         FragmentManager fragmentManager = getFragmentManager();
         Fragment overviewFragment = new OverviewFragment();

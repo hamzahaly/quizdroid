@@ -21,8 +21,8 @@ public class Repository implements TopicRepository {
     }
 
     @Override
-    public Topic getTopic() {
-        return topic;
+    public Topic getTopic(int pos) {
+        return topics.get(pos);
     }
 
     @Override

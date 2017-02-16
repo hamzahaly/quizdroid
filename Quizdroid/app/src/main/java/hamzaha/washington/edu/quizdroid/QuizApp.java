@@ -22,8 +22,4 @@ public class QuizApp extends Application {
     public QuizApp() {
         Log.v("V", "OnCreate fired");
     }
-
-    public int describeContents() {
-        return 0;
-    }
 }

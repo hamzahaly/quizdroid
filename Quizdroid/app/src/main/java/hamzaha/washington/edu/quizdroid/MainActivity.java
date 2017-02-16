@@ -42,6 +42,7 @@ public class MainActivity extends Activity {
                 Topic t = topicAdapter.getItem(i);
 
                 Log.v(TAG, t.getTopicName());
+                intent.putExtra("position", i);
 
                 startActivity(intent);
             }
