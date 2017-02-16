@@ -1,6 +1,7 @@
 package hamzaha.washington.edu.quizdroid;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
@@ -15,6 +16,8 @@ import android.util.Log;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Array;
@@ -33,9 +36,12 @@ public class MainActivity extends Activity {
         QuizApp quizApp = (QuizApp) getApplication();
 
         final File file = new File(Environment.getExternalStorageDirectory()
-                .getAbsolutePath(), "questions");
+                .getAbsolutePath(), "questions.json");
         Log.v(TAG, file.toString());
 
+        Log.v(TAG, String.valueOf(file.exists()));
+
+        //FileOutputStream stream = new FileOutputStream(file);
 
         quizApp.getRepository().setTopic("Math", "Default Description", 3, R.mipmap.ic_launcher);
         quizApp.getRepository().setTopic("Physics", "Default Description", 3, R.mipmap.ic_launcher);
