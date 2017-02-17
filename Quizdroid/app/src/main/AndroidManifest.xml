@@ -21,6 +21,8 @@
         </activity>
         <activity android:name=".SubjectActivity" />
         <activity android:name=".PreferencesActivity"></activity>
+        <service android:name=".URLPullService"
+            android:exported="false"/>
     </application>
 
 </manifest>
