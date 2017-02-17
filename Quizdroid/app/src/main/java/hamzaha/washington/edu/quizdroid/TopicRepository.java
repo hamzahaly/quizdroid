@@ -9,7 +9,7 @@ import java.util.List;
 public interface TopicRepository {
     List<Topic> getAllTopics();
     List<Question> getAllQuestions();
-    Topic getTopic();
+    Topic getTopic(int i);
     int getAnswer();
     Question getQuestion();
     void setTopic(String topic, String desc, int numQuestions, int imgLocation);

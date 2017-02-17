@@ -59,7 +59,7 @@ public class MainActivity extends Activity {
 
                 Log.v(TAG, t.getTopicName());
                 
-
+                intent.putExtra("position", i);
                 startActivity(intent);
             }
         };
