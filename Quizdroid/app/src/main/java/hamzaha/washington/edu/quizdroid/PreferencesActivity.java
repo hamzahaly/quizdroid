@@ -1,6 +1,8 @@
 package hamzaha.washington.edu.quizdroid;
 
 import android.content.Intent;
+import android.os.Handler;
+import android.os.ResultReceiver;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,25 +12,33 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class PreferencesActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    public MyReceiver receiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferences);
+        setupServiceReceiver();
 
         //Text field to get URL from user
         EditText urlText = (EditText) findViewById(R.id.editText);
-        String url = urlText.getText().toString();
+        final String url = urlText.getText().toString();
+
+        Log.v("TAG", url);
         final Intent intent = new Intent(this, URLPullService.class);
         intent.putExtra("URL", url);
+        intent.putExtra("receiver", receiver);
 
         //Button to begin background download
         Button urlButton = (Button) findViewById(R.id.url_button);
         urlButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.v("TAG", url);
+
                 startService(intent);
             }
         });
@@ -48,5 +58,19 @@ public class PreferencesActivity extends AppCompatActivity implements AdapterVie
 
     public void onNothingSelected(AdapterView<?> parent) {
         Log.v("TAG", "Nothing selected");
+    }
+
+    public void setupServiceReceiver() {
+        receiver = new MyReceiver(new Handler());
+
+        receiver.setReceiver(new MyReceiver.Receiver() {
+            @Override
+            public void onReceiveResult(int resultCode, Bundle resultData) {
+                if (resultCode == RESULT_OK) {
+                    String resultValue = resultData.getString("resultValue");
+                    Toast.makeText(PreferencesActivity.this, resultValue, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }

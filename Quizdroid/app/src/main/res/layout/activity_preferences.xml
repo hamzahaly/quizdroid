@@ -21,7 +21,9 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter URL to pull data from"
+        android:hint="Enter URL to pull data from"
+        android:inputType="text"
+        android:imeOptions="actionGo"
         android:id="@+id/editText" />
 
     <Button

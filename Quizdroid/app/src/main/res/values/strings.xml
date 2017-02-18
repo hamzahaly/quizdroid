@@ -1,9 +1,7 @@
 <resources>
     <string name="app_name">Quizdroid</string>
     <string-array name="minutes_array">
-        <item>1 min</item>
-        <item>5 mins</item>
-        <item>10 mins</item>
+        <item>15 mins</item>
         <item>30 mins</item>
         <item>60 mins</item>
     </string-array>
