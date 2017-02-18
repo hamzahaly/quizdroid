@@ -6,13 +6,18 @@ import android.os.ResultReceiver;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 public class PreferencesActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     public MyReceiver receiver;
@@ -25,20 +30,36 @@ public class PreferencesActivity extends AppCompatActivity implements AdapterVie
 
         //Text field to get URL from user
         EditText urlText = (EditText) findViewById(R.id.editText);
-        final String url = urlText.getText().toString();
-
-        Log.v("TAG", url);
-        final Intent intent = new Intent(this, URLPullService.class);
-        intent.putExtra("URL", url);
-        intent.putExtra("receiver", receiver);
 
         //Button to begin background download
-        Button urlButton = (Button) findViewById(R.id.url_button);
+        final Button urlButton = (Button) findViewById(R.id.url_button);
+        urlButton.setClickable(false);
+        urlButton.setEnabled(false);
+
+        final Intent intent = new Intent(this, URLPullService.class);
+
+        urlText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                boolean handled = false;
+                if (i == EditorInfo.IME_ACTION_GO) {
+                    String url = textView.getText().toString();
+                    intent.putExtra("URL", url);
+                    intent.putExtra("receiver", receiver);
+                    if (url != null || url != "") {
+                        urlButton.setEnabled(true);
+                        urlButton.setClickable(true);
+                    }
+                }
+                return handled;
+            }
+        });
+
+
+        //Button logic
         urlButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.v("TAG", url);
-
                 startService(intent);
             }
         });
