@@ -1,6 +1,9 @@
 package hamzaha.washington.edu.quizdroid;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Handler;
 import android.os.ResultReceiver;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +30,18 @@ public class PreferencesActivity extends AppCompatActivity implements AdapterVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferences);
         setupServiceReceiver();
+
+        ConnectivityManager cm = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+        
+        if (isConnected) {
+
+        } else {
+
+        }
+
 
         //Text field to get URL from user
         EditText urlText = (EditText) findViewById(R.id.editText);
