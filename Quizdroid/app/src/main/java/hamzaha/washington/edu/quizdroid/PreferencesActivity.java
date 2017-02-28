@@ -85,6 +85,7 @@ public class PreferencesActivity extends AppCompatActivity implements AdapterVie
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+        spinner.setSelection(0);
     }
 
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
