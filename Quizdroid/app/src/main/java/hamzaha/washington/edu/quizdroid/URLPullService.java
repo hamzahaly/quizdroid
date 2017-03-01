@@ -36,8 +36,6 @@ public class URLPullService extends IntentService {
         String urlToDownload = workIntent.getStringExtra("URL");
         ResultReceiver receiver = workIntent.getParcelableExtra("receiver");
 
-        DownloadManager downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
-
         Bundle bundle = new Bundle();
         bundle.putString("resultValue", "My Result Value. Passed in: " + urlToDownload);
 
@@ -48,24 +46,6 @@ public class URLPullService extends IntentService {
             URLConnection connection = url.openConnection();
             connection.connect();
 
-            if (downloadManager.PAUSED_WAITING_TO_RETRY == 1) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getBaseContext());
-                builder.setMessage("Download failed retry or quit?").setTitle("Download failed");
-                builder.setPositiveButton("Retry", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        
-                    }
-                });
-                builder.setNegativeButton("Quit", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        System.exit(1);
-                    }
-                });
-                final AlertDialog dialog = builder.create();
-                dialog.show();
-            }
 
             InputStream input = new BufferedInputStream(connection.getInputStream());
 

@@ -1,5 +1,6 @@
 package hamzaha.washington.edu.quizdroid;
 
+import android.app.DownloadManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -87,6 +88,26 @@ public class PreferencesActivity extends AppCompatActivity implements AdapterVie
             @Override
             public void onClick(View view) {
                 startService(intent);
+                DownloadManager downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+
+                if (downloadManager.PAUSED_WAITING_TO_RETRY == 1) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(PreferencesActivity.this);
+                    builder.setMessage("Download failed retry or quit?").setTitle("Download failed");
+                    builder.setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    builder.setNegativeButton("Quit", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            System.exit(1);
+                        }
+                    });
+                    final AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
             }
         });
 
