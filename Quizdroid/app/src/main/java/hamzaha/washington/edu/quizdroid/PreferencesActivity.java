@@ -40,9 +40,7 @@ public class PreferencesActivity extends AppCompatActivity implements AdapterVie
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
 
-        if (isConnected) {
-
-        } else {
+        if (!isConnected) {
             AlertDialog.Builder builder = new AlertDialog.Builder(PreferencesActivity.this);
             builder.setMessage("You have no access to Internet right now").setTitle("No Internet Connection");
             builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
@@ -53,7 +51,6 @@ public class PreferencesActivity extends AppCompatActivity implements AdapterVie
             });
             final AlertDialog dialog = builder.create();
             dialog.show();
-
         }
 
 

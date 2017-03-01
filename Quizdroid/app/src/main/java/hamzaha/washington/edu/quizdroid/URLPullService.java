@@ -74,7 +74,6 @@ public class URLPullService extends IntentService {
             // WHERE TO STORE FILE?
             OutputStream output = new FileOutputStream(storage.toString() + "/questions.json");
 
-
             byte data[] = new byte[1024];
             long total = 0;
             int count;
