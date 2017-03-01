@@ -1,6 +1,8 @@
 package hamzaha.washington.edu.quizdroid;
 
+import android.app.AlarmManager;
 import android.app.DownloadManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -29,6 +31,7 @@ import org.w3c.dom.Text;
 
 public class PreferencesActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     public MyReceiver receiver;
+    final Intent intent = new Intent(this, URLPullService.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +65,6 @@ public class PreferencesActivity extends AppCompatActivity implements AdapterVie
         final Button urlButton = (Button) findViewById(R.id.url_button);
         urlButton.setClickable(false);
         urlButton.setEnabled(false);
-
-        final Intent intent = new Intent(this, URLPullService.class);
 
         urlText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -123,6 +124,11 @@ public class PreferencesActivity extends AppCompatActivity implements AdapterVie
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
         String item = (String) parent.getItemAtPosition(pos);
         Log.v("TAG", item);
+
+        final PendingIntent pendingIntent = PendingIntent.getService(this.getApplicationContext(), 0, intent, 0);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, 1000, 6000 * Integer.parseInt(item), pendingIntent);
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
