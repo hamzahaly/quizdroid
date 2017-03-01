@@ -1,11 +1,14 @@
 package hamzaha.washington.edu.quizdroid;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.audiofx.BassBoost;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Handler;
 import android.os.ResultReceiver;
+import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,11 +39,21 @@ public class PreferencesActivity extends AppCompatActivity implements AdapterVie
 
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
-        
+
         if (isConnected) {
 
         } else {
-            
+            AlertDialog.Builder builder = new AlertDialog.Builder(PreferencesActivity.this);
+            builder.setMessage("You have no access to Internet right now").setTitle("No Internet Connection");
+            builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            });
+            final AlertDialog dialog = builder.create();
+            dialog.show();
+
         }
 
 

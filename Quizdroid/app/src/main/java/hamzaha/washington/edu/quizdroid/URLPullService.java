@@ -1,9 +1,13 @@
 package hamzaha.washington.edu.quizdroid;
 
+import android.app.DownloadManager;
 import android.app.IntentService;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.ResultReceiver;
+import android.provider.Settings;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
 import java.io.BufferedInputStream;
@@ -32,6 +36,8 @@ public class URLPullService extends IntentService {
         String urlToDownload = workIntent.getStringExtra("URL");
         ResultReceiver receiver = workIntent.getParcelableExtra("receiver");
 
+        DownloadManager downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+
         Bundle bundle = new Bundle();
         bundle.putString("resultValue", "My Result Value. Passed in: " + urlToDownload);
 
@@ -41,6 +47,25 @@ public class URLPullService extends IntentService {
             URL url = new URL(urlToDownload);
             URLConnection connection = url.openConnection();
             connection.connect();
+
+            if (downloadManager.PAUSED_WAITING_TO_RETRY == 1) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getBaseContext());
+                builder.setMessage("Download failed retry or quit?").setTitle("Download failed");
+                builder.setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        
+                    }
+                });
+                builder.setNegativeButton("Quit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        System.exit(1);
+                    }
+                });
+                final AlertDialog dialog = builder.create();
+                dialog.show();
+            }
 
             InputStream input = new BufferedInputStream(connection.getInputStream());
 
