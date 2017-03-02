@@ -29,9 +29,8 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
-public class PreferencesActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class PreferencesActivity extends AppCompatActivity {
     public MyReceiver receiver;
-    final Intent intent = new Intent(this, URLPullService.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +64,8 @@ public class PreferencesActivity extends AppCompatActivity implements AdapterVie
         final Button urlButton = (Button) findViewById(R.id.url_button);
         urlButton.setClickable(false);
         urlButton.setEnabled(false);
+
+        final Intent intent = new Intent(this, URLPullService.class);
 
         urlText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -117,22 +118,29 @@ public class PreferencesActivity extends AppCompatActivity implements AdapterVie
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.minutes_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
-        spinner.setSelection(0);
-    }
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
+                PendingIntent pendingIntent = PendingIntent.getService(PreferencesActivity.this, 0, intent, 0);
+                String item = (String) adapterView.getItemAtPosition(pos);
+                Log.v("TAG", item);
+                int minutes;
+                if (item == "15 mins") {
+                    minutes = 15;
+                } else if (item == "30 mins") {
+                    minutes = 30;
+                } else {
+                    minutes = 60;
+                }
+//                AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+//                alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, 1000, 6000 * minutes, pendingIntent);
+            }
 
-    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-        String item = (String) parent.getItemAtPosition(pos);
-        Log.v("TAG", item);
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
-        final PendingIntent pendingIntent = PendingIntent.getService(this.getApplicationContext(), 0, intent, 0);
-
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, 1000, 6000 * Integer.parseInt(item), pendingIntent);
-    }
-
-    public void onNothingSelected(AdapterView<?> parent) {
-        Log.v("TAG", "Nothing selected");
+            }
+        });
     }
 
     public void setupServiceReceiver() {
